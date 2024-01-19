@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class CourseSelectionProgram {
+
+    static class Student {
+        private String username;
+
+        // Default constructor with no arguments
+        public Student() {
+            this.username = "DefaultUser";
+        }
+
+        // Parameterized constructor
+        public Student(String username) {
+            this.username = username;
+        }
+
+        // Method to choose course
+        public void chooseCourse() {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Welcome, " + username + "!");
+            System.out.println("Choose a course:");
+            System.out.println("1: Python");
+            System.out.println("2: Java");
+            System.out.println("3: C");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("You have chosen Python.");
+                    break;
+                case 2:
+                    System.out.println("You have chosen Java.");
+                    break;
+                case 3:
+                    System.out.println("You have chosen C.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please choose a valid course.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the number of students:");
+        int numStudents = scanner.nextInt();
+
+        // Creating an array to store multiple Student objects
+        Student[] students = new Student[numStudents];
+
+        for (int i = 0; i < numStudents; i++) {
+            System.out.println("Enter username for student " + (i + 1) + ":");
+            String username = scanner.next();
+
+            // Using the parameterized constructor to create a Student object
+            students[i] = new Student(username);
+
+            // Each student chooses a course
+            students[i].chooseCourse();
+        }
+    }
+}
