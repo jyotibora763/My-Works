@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="country">Select Country:</label>
+    <select id="country" onchange="populateStates()">
+        <option value="Select Country">Select Country</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+    </select>
+
+    <label for="state">Select State:</label>
+    <select id="state" onchange="populateCities()">
+        <option value="Select State">Select State</option>
+    </select>
+
+    <label for="city">Select City:</label>
+    <select id="city">
+        <option value="Select City">Select City</option>
+    </select>
+
+    <script>
+        function populateStates() {
+            var countrySelect = document.getElementById("country");
+            var stateSelect = document.getElementById("state");
+
+            // Clear existing options
+            stateSelect.innerHTML = '<option value="Select State">Select State</option>';
+
+            // Dummy data for states based on the selected country
+            if (countrySelect.value === "India") {
+                addOption(stateSelect, "Maharashtra");
+                addOption(stateSelect, "Karnataka");
+            } else if (countrySelect.value === "USA") {
+                addOption(stateSelect, "California");
+                addOption(stateSelect, "New York");
+            }
+        }
+
+        function populateCities() {
+            var stateSelect = document.getElementById("state");
+            var citySelect = document.getElementById("city");
+
+            // Clear existing options
+            citySelect.innerHTML = '<option value="Select City">Select City</option>';
+
+            // Dummy data for cities based on the selected state
+            if (stateSelect.value === "Maharashtra") {
+                addOption(citySelect, "Mumbai");
+                addOption(citySelect, "Pune");
+            } else if (stateSelect.value === "Karnataka") {
+                addOption(citySelect, "Bangalore");
+                addOption(citySelect, "Mysuru");
+            } else if (stateSelect.value === "California") {
+                addOption(citySelect, "Los Angeles");
+                addOption(citySelect, "San Francisco");
+            } else if (stateSelect.value === "New York") {
+                addOption(citySelect, "New York City");
+                addOption(citySelect, "Buffalo");
+            }
+        }
+
+        function addOption(select, value) {
+            var option = document.createElement("option");
+            option.value = value;
+            option.text = value;
+            select.add(option);
+        }
+    </script>
+</body>
+
+</html>
